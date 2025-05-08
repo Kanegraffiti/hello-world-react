@@ -1,25 +1,49 @@
 {
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    // Target modern JavaScript features from ES2022
     "target": "ES2022",
+
+    // Use the latest standard library features from ES2023
     "lib": ["ES2023"],
+
+    // Use modern ES module system for imports/exports
     "module": "ESNext",
+
+    // Skip checking type declarations in external libraries for faster builds
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    /* Bundler-related options */
+    
+    // Resolve modules like a bundler (e.g., Vite or Webpack)
     "moduleResolution": "bundler",
+
+    // Allow TypeScript files to import other .ts/.tsx files with extensions
     "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
+
+    // Treat each file as an isolated module (required for SWC and fast refresh)
+    "isolatedModules": true,
+
+    // Force TypeScript to detect all modules explicitly
     "moduleDetection": "force",
+
+    // Don't emit compiled files (Vite handles bundling)
     "noEmit": true,
 
-    /* Linting */
+    /* Type Checking / Linting */
+
+    // Enable all strict type-checking options
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+
+    // Allow unused variables (can be toggled based on preference)
+    "noUnusedLocals": false,
+
+    // Allow unused function parameters (same as above)
+    "noUnusedParameters": false,
+
+    // Prevent falling through case blocks in switch statements
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts"]
+
+  // Tell TypeScript where to look for code to type-check
+  "include": ["src", "vite.config.ts"]
 }
