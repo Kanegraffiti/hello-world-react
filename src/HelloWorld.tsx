@@ -1,9 +1,8 @@
 // src/HelloWorld.tsx
-// This component displays "Hello World" with animated hearts and a rotating gradient background
+// This component displays "Hello World" with a rotating gradient background
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Heart } from "lucide-react";
 
 // Gradient styles to rotate between
 const gradients = [
@@ -12,16 +11,6 @@ const gradients = [
   "from-[#7E69AB] to-[#D6BCFA]",
   "from-[#D6BCFA] to-[#9b87f5]",
 ];
-
-// Generate decorative heart positions and animations
-const hearts = Array.from({ length: 20 }, (_, i) => ({
-  id: i,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  size: Math.random() * 0.6 + 0.4,
-  delay: Math.random() * 5,
-  duration: Math.random() * 3 + 5,
-}));
 
 const HelloWorld = () => {
   const [currentGradient, setCurrentGradient] = useState(0);
@@ -47,51 +36,18 @@ const HelloWorld = () => {
         />
       ))}
 
-      {/* Floating hearts */}
-      {hearts.map((heart) => (
-        <motion.div
-          key={heart.id}
-          className="absolute text-white/60"
-          style={{
-            left: `${heart.x}%`,
-            top: `${heart.y}%`,
-          }}
-          animate={{
-            y: [0, -20, 0],
-            opacity: [0.4, 0.7, 0.4],
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: heart.duration,
-            delay: heart.delay,
-            ease: "easeInOut",
-          }}
-        >
-          <Heart size={10 + heart.size * 10} fill="white" />
-        </motion.div>
-      ))}
-
-      {/* Central card with text */}
-      <motion.div
-        className="relative z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+      {/* Central text */}
+      <h1
+        className="text-4xl md:text-6xl font-bold text-white tracking-tight relative z-10"
+        style={{
+          WebkitTextStrokeWidth: "2px",
+          WebkitTextStrokeColor: "#301934", // Updated stroke color
+          WebkitTextFillColor: "white",
+          textShadow: "0 0 1px rgba(0,0,0,0.3)",
+        }}
       >
-        <div className="p-8 backdrop-blur-lg bg-white/10 border border-white/20 hover:scale-105 transition-transform duration-300 shadow-xl rounded-2xl">
-          <h1
-            className="text-4xl md:text-6xl font-bold text-white tracking-tight"
-            style={{
-              WebkitTextStrokeWidth: "2px",
-              WebkitTextStrokeColor: "#1A1F2C",
-              WebkitTextFillColor: "white",
-              textShadow: "0 0 1px rgba(0,0,0,0.3)",
-            }}
-          >
-            Hello World
-          </h1>
-        </div>
-      </motion.div>
+        Hello World
+      </h1>
     </div>
   );
 };
